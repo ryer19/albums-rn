@@ -12,10 +12,7 @@ export default class App extends React.Component {
       <View>
         <Header headerName={"Header"} />
         <AlbumList />
-        <AlbumList />
-        <AlbumList />
-        <AlbumList />
-        <AlbumList />
+
       </View>
     );
   }

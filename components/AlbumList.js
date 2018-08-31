@@ -3,13 +3,31 @@ import { StyleSheet, Text, View } from 'react-native';
 
 class AlbumList extends Component {
   state = {
-    albumList:['a', 'b', 'c']
+    albumList: []
   }
+
+  componentWillMount() {
+    fetch('https://rallycoding.herokuapp.com/api/music_albums')
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.setState({
+          albumList: responseData
+        })
+      })
+      .catch(err => console.log(err))
+  }
+  //()
+  // this.setState({ albums: responseData }));
   render() {
-    let albumList2 = this.state;
-    let showAlbums = albumList2.map((album) => {
-      <Text> {album} </Text>
+    let albumList2 = this.state.albumList;
+    let showAlbums = albumList2.map((album, i) => {
+      return (
+
+        <Text key={i}>  {album} </Text>
+
+      )
     })
+    console.log(Array.isArray(showAlbums))
     return (
       <View style={styles.listStyle}>
         {showAlbums}
